@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[9]:
+# In[11]:
 
 
 # Start writing code here...
-get_ipython().system('pip install streamlit')
-get_ipython().system('pip install geopy')
 import streamlit as st
 from PIL import Image
 import pandas as pd
