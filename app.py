@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[9]:
 
 
 # Start writing code here...
@@ -30,7 +30,7 @@ st.text("""1. Webscraping the first 1000 Best Books listsof the Decade: 2000s fr
 st.markdown("""### This is the README.md file [readme](https://github.com/martinezpl/goodreads_best2000/blob/main/README.md)""")
 
 #dataset
-df = pd.read_csv('Best_2000s.csv')
+df = pd.read_pickle('Best_2000s_df.pkl')
 if st.button("Display the data."):
     st.dataframe(df)
 st.markdown("""So much of data at once, can access individual columns here:""")
@@ -39,4 +39,16 @@ column = st.multiselect("Select the columns you want to display.",df.columns)
 #threshold = st.slider('Filter out number of awards in between 200 to 800',2,40)
 #filtered = df[df.awards_count >=threshold]
 #st.dataframe(filtered[column])
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
 
