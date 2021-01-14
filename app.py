@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[11]:
+# In[13]:
 
 
 # Start writing code here...
@@ -37,16 +37,4 @@ column = st.multiselect("Select the columns you want to display.",df.columns)
 #threshold = st.slider('Filter out number of awards in between 200 to 800',2,40)
 #filtered = df[df.awards_count >=threshold]
 #st.dataframe(filtered[column])
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
 
