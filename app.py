@@ -8,33 +8,62 @@
 import streamlit as st
 from PIL import Image
 import pandas as pd
+import datetime
 
 #Sidebar
-logo = Image.open("logo.png")
-st.sidebar.image(logo, width=100)
+
+#st.set_page_config(layout="wide")
+image = Image.open('PromoHP1_Minerva_McGonagall_2.jpg')
+st.sidebar.image(image, width = 300, height = 200)
+st.sidebar.title('Team McGonagall')
 st.sidebar.header("Build Week 1")
-st.sidebar.text("###Team:\nMarcin Szleszynski\nSaurabh Satasia\nSai Mohan Reddy Dalli")
-st.sidebar.markdown("""### This is the website for [Streamlit](https://www.streamlit.io/) to publish the results from our first AI Build Week!""")
+today = st.sidebar.date_input("Presentation day is", datetime.datetime.now())
+st.sidebar.subheader("""Players:\n
+Marcin Szleszynski [click](https://github.com/martinezpl)\n
+Saurabh Satasia [click](https://github.com/saurabhsatasia)\n
+Sai Mohan Reddy Dalli [click](https://github.com/smr-dalli)""")
+st.sidebar.subheader('Our Sponsors:')
+st.sidebar.markdown("""Jan [click](https://github.com/jcllobet)\n
+Antonnio [click](https://github.com/AntonioMarsella)""")
 
 #Title
-image = Image.open('minerva_mcgonagall_hero.jpg')
-st.image(image)
-st.title('Team McGonagall')
-st.header('##Tasks for the Build Week 1')
-st.text("""1. Webscraping the first 1000 Best Books listsof the Decade: 2000s from the [https://www.goodreads.com](https://www.goodreads.com/list/show/5.Best_Books_of_the_Decade_2000s) website.\n
-2. Cleaning the dataset.\n
-3. Calculating the Min max norm rating and Mean max norm rating.\n
-4. Analysing the data and Visulaisation.""")
-st.markdown("""### This is the README.md file [readme](https://github.com/martinezpl/goodreads_best2000/blob/main/README.md)""")
+st.header('Welcome to our webpage, we are happy to see you:)')
+image = Image.open('Goodreads-Logo-1024x576-7abf5bd8d98b9d10.jpg')
+st.image(image,width = 900,height = 200)
+st.subheader('Wonder!! what is Good reads is all about, [click here](https://www.youtube.com/watch?v=SnjlL4St_W4) for '
+             'a brief introduction.')
+st.header('Tasks for the Build Week 1')
+st.markdown("""1. From the [Good reads website](https://www.goodreads.com/), scrap the first 1000 [Best Books listsof 
+the Decade: 2000s](https://www.goodreads.com/list/show/5.Best_Books_of_the_Decade_2000s/) books. The dataframe looks 
+like [this..](https://github.com/martinezpl/goodreads_best2000/blob/main/pngs/orginal_df.PNG).\n 2. Cleaning the 
+dataset by dropping the NAN values to a readable pandas dataframe.\n 3. Calculating the Min max norm rating and Mean max 
+norm rating for the data consistency. The dataframe looks like [this..](
+https://github.com/martinezpl/goodreads_best2000/blob/main/pngs/Minmax_mean_norm_rating_df.PNG).\n 4. Analysing the 
+data by grouping particular columns to find the relation among the other columns. The dataframe looks like [this..](
+https://github.com/martinezpl/goodreads_best2000/blob/main/pngs/Analysis.PNG).\n 5. Visulaisation of the dataframe 
+columns for the better interpretation of the data using plotly.""")
+st.markdown("""This is the [README.md](https://github.com/martinezpl/goodreads_best2000/blob/main/README.md) file of the overview of the build week.""") 
 
 #dataset
-df = pd.read_csv('Best_2000s.csv')
+df = pd.read_csv('Best_00s.csv')
+st.header("Click on 'Display the data' for the complete dataframe:")
 if st.button("Display the data."):
     st.dataframe(df)
-st.markdown("""So much of data at once, can access individual columns here:""")
+st.markdown("""Large data at once, can access individual columns here:""")
+st.subheader("Filter by columns")
 column = st.multiselect("Select the columns you want to display.",df.columns)
-#st.markdown("Filter out the books under a thershold of number of awards:")
-#threshold = st.slider('Filter out number of awards in between 200 to 800',2,40)
-#filtered = df[df.awards_count >=threshold]
-#st.dataframe(filtered[column])
+
+st.subheader("Filter out the books by number of awards and number of pages:")
+threshold = st.slider('Number of awards:',5,40)
+filtered = df[df.awards_count >=threshold]
+st.dataframe(filtered[column])
+threshold1 = st.slider('Number of pages:',200,1000)
+filtered1 = df[df.num_pages >= threshold1]
+st.dataframe(filtered1[column])
+
+st.subheader(" Do you find this page intresting? ")
+x = [1,2,3,4,5]
+rate = st.multiselect('On a scale of 1 - 5, how informative is this website?',x)
+
+
 
